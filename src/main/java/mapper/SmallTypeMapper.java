@@ -1,10 +1,13 @@
-package service;
+package mapper;
 
 import entity.SmallType;
 
 import java.util.List;
 
-public interface SmallTypeService {
+
+public interface SmallTypeMapper {
+
+
     int addSmallType(SmallType smallType);
 
     int delSmallType(SmallType smallType);
@@ -12,4 +15,6 @@ public interface SmallTypeService {
     int upSmallType(SmallType smallType);
 
     List<SmallType> querrySmallType(SmallType smallType);
+
+    SmallType findSmallByIdCard(SmallType smallType);
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SmallTypeMapper">
+
+    <resultMap id="smalltype" type="smalltype">
+        <id column="id" property="id"></id>
+        <result column="big_type_id" property="bigTypeId"></result>
+        <result column="type_name" property="typeName"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="del_flag" property="delFlag"></result>
+
+    </resultMap>
+
+    <!--    添加小类型信息-->
+    <insert id="addSmallType" parameterType="smalltype">
+        insert into small_type(id, big_type_id, type_name, create_time, del_flag)
+        values (#{id}, #{bigTypeId}, #{typeName}, #{createTime}, #{delFlag})
+    </insert>
+    <!--    更新小类型信息根据id-->
+    <update id="upSmallType" parameterType="smalltype">
+        update small_type
+        set big_type_id=#{bigTypeId},
+            type_name=#{typeName}
+        where id = #{id}
+    </update>
+    <!--    删除小类型信息-->
+    <delete id="delSmallType" parameterType="smalltype">
+        delete
+        from small_type
+        where type_name = #{typeName}
+    </delete>
+
+    <!--    查询信息-->
+    <select id="querrySmallType" parameterType="smalltype" resultMap="smalltype">
+        select *
+        from small_type
+    </select>
+
+
+    <select id="findSmallByIdCard" parameterType="smalltype" resultType="smalltype">
+        select id,
+        big_type_id as bigTypeId,
+        type_name as typeName,
+        create_time as createTime,
+        del_flag as delFlag
+        from small_type
+        where true
+        AND del_flag = '0'
+        <if test="null != typeName">and type_name = #{typeName}</if>
+    </select>
+
+    <!--    <select id="findUserByIdCard" parameterType="user" resultType="user">-->
+    <!--        select id,-->
+    <!--        user_name as userName,-->
+    <!--        password as password,-->
+    <!--        real_name as realName,-->
+    <!--        id_card as idCard,-->
+    <!--        sex as sex,-->
+    <!--        tel as tel,-->
+    <!--        create_time as createTime,-->
+    <!--        del_flag as delFlag-->
+    <!--        from user-->
+    <!--        where true-->
+    <!--        AND del_flag = '0'-->
+    <!--        <if test="null != idCard">and id_card = #{idCard}</if>-->
+    <!--    </select>-->
+
+
+</mapper>
