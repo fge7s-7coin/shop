@@ -20,4 +20,10 @@
 	</bean>
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven/>
+
+	<!--Mutipart解析器 -->
+	<bean id="multipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
 </beans>

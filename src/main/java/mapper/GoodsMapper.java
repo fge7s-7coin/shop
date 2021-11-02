@@ -1,11 +1,17 @@
-package service;
+package mapper;
 
 import entity.Goods;
+import entity.User;
 
 import java.util.List;
 
-public interface GoodsSerivce {
+
+public interface GoodsMapper {
+
+
     int addGoods(Goods goods);
+
+    Goods findGoodsByIdCard(Goods goods);
 
     int delGoods(Goods goods);
 

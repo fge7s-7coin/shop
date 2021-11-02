@@ -4,11 +4,16 @@ public class Goods {
     private String id;
     private String goodsName;
     private String price;
-    private String describe;
+    private String describtion;
     private String num;
-    private String pictire;
+    private String picture;
     private String manufacturer;
     private String score;
+    private String smallTypeId;
+    private String createTime;
+    private String delFlag;
+    private String state;
+
 
     public String getId() {
         return id;
@@ -34,12 +39,12 @@ public class Goods {
         this.price = price;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescribtion() {
+        return describtion;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescribtion(String describtion) {
+        this.describtion = describtion;
     }
 
     public String getNum() {
@@ -50,12 +55,12 @@ public class Goods {
         this.num = num;
     }
 
-    public String getPictire() {
-        return pictire;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setPictire(String pictire) {
-        this.pictire = pictire;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public String getManufacturer() {
@@ -74,28 +79,28 @@ public class Goods {
         this.score = score;
     }
 
-    public String getSmall_type_id() {
-        return small_type_id;
+    public String getSmallTypeId() {
+        return smallTypeId;
     }
 
-    public void setSmall_type_id(String small_type_id) {
-        this.small_type_id = small_type_id;
+    public void setSmallTypeId(String smallTypeId) {
+        this.smallTypeId = smallTypeId;
     }
 
-    public String getCreate_time() {
-        return create_time;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(String create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public String getDel_flag() {
-        return del_flag;
+    public String getDelFlag() {
+        return delFlag;
     }
 
-    public void setDel_flag(String del_flag) {
-        this.del_flag = del_flag;
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
     }
 
     public String getState() {
@@ -105,10 +110,4 @@ public class Goods {
     public void setState(String state) {
         this.state = state;
     }
-
-    private String small_type_id;
-    private String create_time;
-    private String del_flag;
-    private String state;
-
 }
