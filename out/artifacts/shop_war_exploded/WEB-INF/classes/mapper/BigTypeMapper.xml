@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BigTypeMapper">
+
+    <resultMap id="bigType" type="bigType">
+        <id column="id" property="id"></id>
+        <result column="type_name" property="typeName"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="del_flag" property="delFlag"></result>
+    </resultMap>
+
+
+
+        <select id="findBigTypeByIdCard" parameterType="bigType" resultType="entity.BigType">
+            select id,
+            type_name as typeName,
+            create_time as createTime,
+            del_flag as delFlag
+            from big_type
+            where true
+            AND del_flag = '0'
+            <if test="null != typeName">and type_name = #{typeName}</if>
+        </select>
+
+    <select id="querryAllBigType" parameterType="bigType" resultMap="bigType">
+        select * from big_type
+    </select>
+
+    <!--    添加商品大分类-->
+    <insert id="addBigType" parameterType="bigtype">
+        insert into big_type(id,type_name,create_time,del_flag)
+        values(#{id},#{typeName},#{createTime},#{delFlag})
+    </insert>
+
+<!--    更新商品分类-->
+    <update id="upBigType" parameterType="bigtype">
+        update big_type set type_name=#{typeName} where id = #{id}
+    </update>
+
+    <!--    删除类型-->
+    <delete id="delBigType" parameterType="bigtype">
+        delete from big_type where id=#{id}
+    </delete>
+
+    <!--    <select id="findUserByIdCard" parameterType="user" resultType="user">-->
+    <!--        select id,-->
+    <!--        user_name as userName,-->
+    <!--        password as password,-->
+    <!--        real_name as realName,-->
+    <!--        id_card as idCard,-->
+    <!--        sex as sex,-->
+    <!--        tel as tel,-->
+    <!--        create_time as createTime,-->
+    <!--        del_flag as delFlag-->
+    <!--        from user-->
+    <!--        where true-->
+    <!--        AND del_flag = '0'-->
+    <!--        <if test="null != idCard">and id_card = #{idCard}</if>-->
+    <!--    </select>-->
+</mapper>
