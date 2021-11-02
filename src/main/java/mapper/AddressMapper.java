@@ -1,15 +1,13 @@
-package service;
+package mapper;
 
 import entity.Address;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+public interface AddressMapper {
 
-@Service
-public interface AddressService {
-    int addAddress(Address address);
-
+    int addRess(Address address);
+    Address findAddressByconsignee(Address address);
     int delAddress(Address address);
 
     int upAddress(Address address);
@@ -18,6 +16,3 @@ public interface AddressService {
 
     List<Address> querryAddressByconsignee(Address address);
 }
-
-
-

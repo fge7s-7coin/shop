@@ -8,10 +8,6 @@ import java.util.List;
 @Service
 public interface UserService {
 
-
-
-
-
     int addUser(User user);
 
     int delUser(User user);

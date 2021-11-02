@@ -1,7 +1,6 @@
 package mapper;
 
 import entity.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
