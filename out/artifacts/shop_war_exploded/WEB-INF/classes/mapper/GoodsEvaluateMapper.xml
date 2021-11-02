@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.GoodsEvaluateMapper">
+
+    <resultMap id="goodsevaluate" type="goodsevaluate">
+        <id column="id" property="id"></id>
+        <result column="goods_id" property="goodsId"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="comment" property="comment"></result>
+        <result column="picture" property="picture"></result>
+        <result column="level" property="level"></result>
+
+    </resultMap>
+
+    <!--    添加-->
+    <insert id="addGoodsEvaluate" parameterType="goodsevaluate">
+        insert into goods_evaluate(id, goods_id, user_id, comment, picture, level)
+        values (#{id}, #{goodsId}, #{userId}, #{comment}, #{picture}, #{level})
+    </insert>
+    <!--    更新-->
+    <update id="upGoodsEvaluate" parameterType="goodsevaluate">
+        update goods_evaluate
+        set user_id=#{userId},
+            comment=#{comment},
+            picture=#{picture},
+            level=#{level}
+        where goods_id = #{goodsId}
+    </update>
+    <!--    删除-->
+    <delete id="delGoodsEvaluate" parameterType="goodsevaluate">
+        delete
+        from goods_evaluate
+        where goods_id = #{goodsId}
+    </delete>
+    <!--    查询全部-->
+    <select id="queryGoodsEvaluate" parameterType="goodsevaluate" resultMap="goodsevaluate">
+        select *
+        from goods_evaluate where goods_id=#{goodsId}
+    </select>
+    <!--    根据商品id查询-->
+    <select id="queryGoodsEvaluateAll" parameterType="goodsevaluate" resultMap="goodsevaluate">
+        select * from goods_evaluate
+    </select>
+
+        <select id="findGoodsEvaluateByIdCard" parameterType="goodsevaluate" resultType="goodsevaluate">
+            select id,
+            goods_id as userName,
+            user_id as password,
+            comment as realName,
+            picture as idCard,
+           level as level
+            from goods_evaluate
+            where true
+            <if test="null != goodsId">and goods_id = #{goodsId}</if>
+        </select>
+
+
+</mapper>

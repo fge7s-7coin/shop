@@ -1,11 +1,11 @@
-package service;
+package mapper;
 
 import entity.GoodsEvaluate;
 import entity.User;
 
 import java.util.List;
 
-public interface GoodsEvaluateService {
+public interface GoodsEvaluateMapper {
 
     int addGoodsEvaluate(GoodsEvaluate goodsEvaluate);
 
@@ -16,4 +16,6 @@ public interface GoodsEvaluateService {
     List<User> queryGoodsEvaluate(GoodsEvaluate goodsEvaluate);
 
     List<User> queryGoodsEvaluateAll(GoodsEvaluate goodsEvaluate);
+
+    GoodsEvaluate findGoodsEvaluateByIdCard(GoodsEvaluate goodsEvaluate);
 }
