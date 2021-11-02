@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OrdMapper">
+
+    <resultMap id="ord" type="ord">
+        <id column="id" property="id"></id>
+        <result column="goods_id" property="goodsId"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="address_id" property="addressId"></result>
+        <result column="num" property="num"></result>
+        <result column="price" property="price"></result>
+        <result column="ord_no" property="ordNo"></result>
+        <result column="ord_state" property="ordState"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="del_flag" property="delFlag"></result>
+    </resultMap>
+
+    <insert id="addOrd" parameterType="ord">
+        insert into ord(id, goods_id, user_id, address_id, num, price, ord_no, ord_state, create_time, del_flag)
+        values (#{id}, #{goodsId}, #{userId}, #{addressId}, #{num}, #{price}, #{ordNo}, #{ordState}, #{createTime},
+                #{delFlag})
+    </insert>
+    <update id="upOrd" parameterType="ord">
+        update ord
+        set goods_id=#{goodsId},
+            user_id=#{userId},
+            address_id=#{addressId},
+            num=#{num},
+            price=#{price},
+            ord_state=#{ordState}
+        where ord_no=#{ordNo}
+    </update>
+    <delete id="delOrd" parameterType="ord">
+        delete from ord where ord_no=#{ordNo}
+    </delete>
+
+    <select id="queryOrd" parameterType="ord" resultMap="ord">
+        select * from ord where ord_no=#{ordNo}
+    </select>
+    <select id="queryOrdAll" parameterType="ord" resultMap="ord">
+        select * from ord
+    </select>
+
+    <select id="findOrdByIdCard" parameterType="ord" resultType="entity.Goods">
+        select id,
+        goods_id as goodsId,
+        user_id as userId,
+        address_id as addressId,
+        num as num,
+        price as price,
+        ord_no as ordNo,
+        ord_state as ordState,
+        create_time as createTime,
+        del_flag as delFlag
+        from ord
+        where true
+        AND del_flag = '0'
+        <if test="null != ordNo">and ord_no = #{ordNo}</if>
+    </select>
+
+
+</mapper>
