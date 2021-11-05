@@ -1,5 +1,6 @@
 package mapper;
 
+import entity.Address;
 import entity.BigType;
 
 import java.util.List;
@@ -16,4 +17,10 @@ public interface BigTypeMapper {
     BigType findBigTypeByIdCard(BigType bigType);
 
     List<BigType> querryAllBigType(BigType bigType);
+
+
+    List<BigType> findBigType(BigType bigtype);
+
+
+    BigType findBigTypeById(BigType recored);
 }

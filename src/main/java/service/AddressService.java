@@ -3,6 +3,7 @@ package service;
 import entity.Address;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -17,6 +18,12 @@ public interface AddressService {
     List<Address> querryAddress(Address address);
 
     List<Address> querryAddressByconsignee(Address address);
+
+    List<Address> getAddress(HttpServletRequest request);
+
+    Address findById(Address recored);
+
+    int add(Address address);
 }
 
 

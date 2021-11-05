@@ -16,7 +16,7 @@
         <result column="del_flag" property="delFlag"></result>
     </resultMap>
 
-    <select id="findUserByIdCard" parameterType="user" resultType="user">
+    <select id="findUserByIdCard" parameterType="user" resultMap="user">
         select id,
         user_name as userName,
         password as password,
@@ -27,23 +27,49 @@
         create_time as createTime,
         del_flag as delFlag
         from user
-        where true
-        AND del_flag = '0'
-        <if test="null != idCard">and id_card = #{idCard}</if>
+        where  del_flag = '0'
+        and id_card = #{idCard}
     </select>
 
     <!--    通过用户名查询用户信息-->
-    <select id="queryUserByusername" parameterType="entity.User" resultMap="user">
+    <select id="queryUserByusername" parameterType="user" resultMap="user">
         select *
         from user
         where user_name = #{userName}
     </select>
-<!--    查询所有用户信息-->
+    <!--    查询所有用户信息-->
     <select id="queryUserAll" resultType="entity.User" resultMap="user">
-        select * from user
+        select *
+        from user
     </select>
+
+
+    <!--    登陆验证-->
+    <select id="login" parameterType="user" resultType="java.lang.Integer">
+        select count(*)
+        from user
+        where user_name = #{userName}
+          and password = #{password}
+    </select>
+
+    <!--    查询-->
+    <select id="getUser" parameterType="user" resultMap="user">
+        select *
+        from user
+        where del_flag = '0'
+
+        <if test="userName != null and userName != ''">and user_name=#{userName}</if>
+    </select>
+
+    <!--    -->
+    <select id="findUserById" resultType="user" resultMap="user">
+        select * from user where del_flag='0'
+        <if test="id != null">and id = #{id}</if>
+    </select>
+
+
     <!--   插入user信息-->
-    <insert id="addUser" parameterType="entity.User" >
+    <insert id="addUser" parameterType="entity.User">
         insert into user(id, user_name, password, real_name, id_card, sex, tel, create_time, del_flag)
         values (#{id}, #{userName}, #{password}, #{realName}, #{idCard}, #{sex}, #{tel}, #{createTime}, #{delFlag})
     </insert>
@@ -51,15 +77,18 @@
     <delete id="delUser" parameterType="entity.User">
         delete
         from user
-        where user_name = #{userName}
+        where id = #{id}
     </delete>
     <!--    更新用户信息-->
     <update id="upUserByusername" parameterType="entity.User">
         update user
-        set password=#{password},
+        set
+            user_name = #{userName},
+            password=#{password},
             real_name=#{realName},
             id_card=#{idCard},
+            sex = #{sex},
             tel=#{tel}
-        where user_name = #{userName}
+        where id = #{id}
     </update>
 </mapper>

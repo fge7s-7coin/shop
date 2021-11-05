@@ -14,19 +14,27 @@
         <result column="del_flag" property="delFlag"></result>
     </resultMap>
 
-<!--    添加收货人地址信息-->
+    <!--    添加收货人地址信息-->
     <insert id="addRess" parameterType="address">
-        insert into address(id,consignee,consignee_tel,address,user_id,create_time,del_flag)
-        values (#{id},#{consignee},#{consigneeTel},#{address},#{userId},#{createTime},#{delFlag})
+        insert into address(id, consignee, consignee_tel, address, user_id, create_time, del_flag)
+        values (#{id}, #{consignee}, #{consigneeTel}, #{address}, #{userId}, #{createTime}, #{delFlag})
     </insert>
-<!--    通过consignee修改收货人地址信息-->
+    <!--    通过consignee修改收货人地址信息-->
     <update id="upAddress">
-        UPDATE address SET consignee_tel=#{consigneeTel},address=#{address},user_id=#{userId} WHERE consignee=#{consignee}
+        UPDATE address
+        SET consignee_tel=#{consigneeTel},
+            address=#{address},
+            user_id=#{userId}
+        WHERE consignee = #{consignee}
     </update>
     <!--    通过consignee删除收货人地址信息-->
-    <delete id="delAddress">
-        delete from address where consignee=#{consignee}
-    </delete>
+    <update id="delAddress" parameterType="address">
+
+        update address
+        set del_flag='1'
+        where id = #{id}
+
+    </update>
 
     <!--    以收货人姓名的查询来确定是否已存在此用户-->
     <select id="findAddressByconsignee" parameterType="address" resultType="address">
@@ -42,31 +50,57 @@
         AND del_flag = '0'
         <if test="null != consignee">and consignee = #{consignee}</if>
     </select>
-<!--    查询收货人收货信息-->
+    <!--    查询收货人收货信息-->
     <select id="querryAddress" resultType="entity.Address" resultMap="address">
-        select * from address
+        select *
+        from address
     </select>
     <select id="querryAddressByconsignee" resultType="entity.Address" resultMap="address">
-        select * from address where consignee=#{consignee}
+        select *
+        from address
+        where consignee = #{consignee}
+    </select>
+
+
+    <!--    list-->
+    <select id="getAddress" parameterType="address" resultMap="address">
+        select * from address where del_flag='0'
+        <if test="consignee != null and consignee!=''">and consignee=#{consignee}</if>
+    </select>
+
+    <!--    form 编辑-->
+    <select id="findById" parameterType="address" resultType="entity.Address">
+
+        select id,
+        consignee as consignee,
+        consignee_tel as consigneeTel,
+        address as address,
+        user_id as userId,
+        create_time as createTime,
+        del_flag as delFlag
+        from address
+        where true
+        AND del_flag = '0'
+        <if test="id != null">and id = #{id}</if>
+
     </select>
 
 
     <!--    <select id="findUserByIdCard" parameterType="user" resultType="user">-->
-<!--        select id,-->
-<!--        user_name as userName,-->
-<!--        password as password,-->
-<!--        real_name as realName,-->
-<!--        id_card as idCard,-->
-<!--        sex as sex,-->
-<!--        tel as tel,-->
-<!--        create_time as createTime,-->
-<!--        del_flag as delFlag-->
-<!--        from user-->
-<!--        where true-->
-<!--        AND del_flag = '0'-->
-<!--        <if test="null != idCard">and id_card = #{idCard}</if>-->
-<!--    </select>-->
-
+    <!--        select id,-->
+    <!--        user_name as userName,-->
+    <!--        password as password,-->
+    <!--        real_name as realName,-->
+    <!--        id_card as idCard,-->
+    <!--        sex as sex,-->
+    <!--        tel as tel,-->
+    <!--        create_time as createTime,-->
+    <!--        del_flag as delFlag-->
+    <!--        from user-->
+    <!--        where true-->
+    <!--        AND del_flag = '0'-->
+    <!--        <if test="null != idCard">and id_card = #{idCard}</if>-->
+    <!--    </select>-->
 
 
 </mapper>

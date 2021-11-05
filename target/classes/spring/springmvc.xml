@@ -8,6 +8,12 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<!-- 设置扫描controller -->
 	<context:component-scan base-package="controller" />
+	<!-- 配置注解驱动 -->
+<!--	<mvc:annotation-driven/>-->
+	<!--开启注解-->
+	<mvc:annotation-driven/>
+	<!--处理静态资源-->
+	<mvc:default-servlet-handler/>
 	<!-- 对静态资源放行 -->
 	<!--	<mvc:resources location="/css/" mapping="/css/**"/>
         <mvc:resources location="/js/" mapping="/js/**"/>-->
@@ -18,8 +24,7 @@
 		<!-- 后缀 -->
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<!-- 配置注解驱动 -->
-	<mvc:annotation-driven/>
+
 
 	<!--Mutipart解析器 -->
 	<bean id="multipartResolver"

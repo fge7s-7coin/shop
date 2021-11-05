@@ -43,4 +43,16 @@ public class BigTypeServiceImpl implements BigTypeService {
     public List<BigType> querryAllBigType(BigType bigType) {
         return bigTypeMapper.querryAllBigType(bigType);
     }
+
+    @Override
+    public List<BigType> findBigtype(BigType bigtype) {
+        return bigTypeMapper.findBigType(bigtype);
+    }
+
+    @Override
+    public BigType findById(BigType recored) {
+        return bigTypeMapper.findBigTypeById(recored);
+    }
+
+
 }

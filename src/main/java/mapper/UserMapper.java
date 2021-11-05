@@ -2,6 +2,7 @@ package mapper;
 
 import entity.User;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -19,4 +20,11 @@ public interface UserMapper {
     List<User> queryUserByusername(User user);
 
     List<User> queryUserAll(User user);
+
+    int login(User user);
+
+    List<User> getUser(User user);
+
+
+    User findUserById(User recore);
 }

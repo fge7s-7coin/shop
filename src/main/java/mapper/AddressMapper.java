@@ -8,6 +8,7 @@ public interface AddressMapper {
 
     int addRess(Address address);
     Address findAddressByconsignee(Address address);
+
     int delAddress(Address address);
 
     int upAddress(Address address);
@@ -15,4 +16,8 @@ public interface AddressMapper {
     List<Address> querryAddress(Address address);
 
     List<Address> querryAddressByconsignee(Address address);
+
+    List<Address> getAddress(Address address);
+
+    Address findById(Address recored);
 }

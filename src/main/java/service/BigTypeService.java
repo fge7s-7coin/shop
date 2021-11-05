@@ -1,5 +1,6 @@
 package service;
 
+import entity.Address;
 import entity.BigType;
 
 import java.util.List;
@@ -12,4 +13,10 @@ public interface BigTypeService {
     int upBigType(BigType bigType);
 
     List<BigType> querryAllBigType(BigType bigType);
+
+
+    List<BigType> findBigtype(BigType bigtype);
+
+
+    BigType findById(BigType recored);
 }

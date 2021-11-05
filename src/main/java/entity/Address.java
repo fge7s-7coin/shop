@@ -4,6 +4,11 @@ public class Address {
     private String id;
     private String consignee;
     private String consigneeTel;
+
+    public String getAddress() {
+        return address;
+    }
+
     private String address;
     private String userId;
     private String createTime;
@@ -33,7 +38,7 @@ public class Address {
         this.consigneeTel = consigneeTel;
     }
 
-    public String getAddress() {
+    public String getAddress(String addressName) {
         return address;
     }
 

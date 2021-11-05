@@ -20,4 +20,5 @@ public interface GoodsMapper {
     List<Goods> querryGoods(Goods goods);
 
     List<Goods> querryGoodsBygoodsname(Goods goods);
+
 }
