@@ -12,7 +12,7 @@
                         <div class="layui-card-body" style="padding: 15px;">
                             <form class="layui-form" action="/bigtype/add" method="post"
                                   lay-filter="component-form-group">
-                                <input class="form-control" type="hidden" name="typeName" value="${bigtype.id}">
+                                <input class="form-control" type="hidden" name="id" value="${bigtype.id}">
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">商品类型</label>
                                     <div class="layui-input-block">

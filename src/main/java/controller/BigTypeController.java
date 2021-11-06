@@ -63,21 +63,31 @@ public class BigTypeController {
     //    添加
     @RequestMapping(value = "/forms", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView forms(BigType bigType) {
-            ModelAndView mv = new ModelAndView();
-            mv.setViewName("bigTypeForms");
-            return mv;
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("bigTypeForms");
+        return mv;
     }
 
     //    编辑
-    @RequestMapping(value = "/form",method = {RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView form(HttpServletRequest request){
+    @RequestMapping(value = "/form", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView form(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         String id = request.getParameter("id");
         BigType recored = new BigType();
         recored.setId(id);
         BigType bigtype = bigTypeService.findById(recored);
-        mv.addObject("bigtype",bigtype);
+        mv.addObject("bigtype", bigtype);
         mv.setViewName("bigtypeForm");
+        return mv;
+
+    }
+
+    @RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView add(BigType bigType) {
+        ModelAndView mv = new ModelAndView();
+        int bigtypeaddlist = bigTypeService.add(bigType);
+        mv.addObject("bigtypeaddlist",bigtypeaddlist);
+        mv.setViewName("bigTypePage");
         return mv;
 
     }

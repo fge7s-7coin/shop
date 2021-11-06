@@ -19,4 +19,6 @@ public interface BigTypeService {
 
 
     BigType findById(BigType recored);
+
+    int add(BigType bigType);
 }

@@ -20,7 +20,7 @@
         from big_type
         where true
         AND del_flag = '0'
-        <if test="null != typeName">and type_name = #{typeName}</if>
+        <if test="typeName != null and typeName != ''">and type_name = #{typeName}</if>
     </select>
 
     <select id="querryAllBigType" parameterType="bigType" resultMap="bigType">
@@ -51,11 +51,11 @@
     </update>
 
     <!--    删除类型-->
-    <delete id="delBigType" parameterType="bigtype">
-        delete
-        from big_type
+    <update id="delBigType" parameterType="bigtype">
+        update  big_type
+        set del_flag='1'
         where id = #{id}
-    </delete>
+    </update>
 
     <!--    <select id="findUserByIdCard" parameterType="user" resultType="user">-->
     <!--        select id,-->

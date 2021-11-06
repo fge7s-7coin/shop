@@ -9,6 +9,7 @@ import service.BigTypeService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BigTypeServiceImpl implements BigTypeService {
@@ -52,6 +53,27 @@ public class BigTypeServiceImpl implements BigTypeService {
     @Override
     public BigType findById(BigType recored) {
         return bigTypeMapper.findBigTypeById(recored);
+    }
+
+    @Override
+    public int add(BigType bigType) {
+        if (bigType.getId()==null || bigType.getId()==""){
+            BigType recore = bigTypeMapper.findBigTypeByIdCard(bigType);
+            if (recore==null){
+                String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                bigType.setId(uuid);
+                bigType.setCreateTime(sdf.format(date));
+                bigType.setDelFlag("0");
+                return bigTypeMapper.addBigType(bigType);
+            }
+
+        }else {
+            return bigTypeMapper.upBigType(bigType);
+        }
+
+        return 0;
     }
 
 

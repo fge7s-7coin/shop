@@ -16,7 +16,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">商品类型</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="consignee" lay-verify="required" placeholder="商品类型名"
+                                        <input type="text" name="typeName" lay-verify="required" placeholder="商品类型名"
                                                autocomplete="off" class="layui-input" value="${bigtype.typeName }">
                                     </div>
                                 </div>

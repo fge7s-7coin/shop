@@ -42,7 +42,7 @@
 				    				<a href="/bigtype/form?id=${bigtype.id}" role="button" class="btn btn-info"><i class="layui-icon">
                                         &#xe642;
                                     </i></a>
-									<a href="javascript:;" role="button" class="btn btn-danger" onclick="member_del(this,'${bigtype.id}')"><i class="layui-icon">
+									<a href="javascript:;" role="button" class="btn btn-danger" onclick="big_del(this,'${bigtype.id}')"><i class="layui-icon">
                                         &#xe640;
                                     </i></a>
 								</td>
@@ -56,10 +56,10 @@
     </div>
 </div>
 <script>
-function member_del(obj,id){
+function big_del(obj,id){
     layer.confirm('确认要删除吗？',function(index){
     	$.ajax({
-            url:"/user/delUser?id="+id,
+            url:"/bigtype/delBigType?id="+id,
             type:"post",
             success:function (result) {
                 // console.info(result);
