@@ -8,12 +8,12 @@
             <div class="x-body">
                 <div class="layui-fluid">
                     <div class="layui-card">
-                        <div class="layui-card-header">添加</div>
+                        <div class="layui-card-header">编辑</div>
                         <div class="layui-card-body" style="padding: 15px;">
                             <form class="layui-form" action="/user/add" method="post"
                                   lay-filter="component-form-group">
                                 <input class="form-control" type="hidden" name="id" value="${user.id}">
-                                <div class="layui-form-item">
+                               w <div class="layui-form-item">
                                     <label class="layui-form-label">姓名</label>
                                     <div class="layui-input-block">
                                         <input type="text" name="userName" lay-verify="required" placeholder="姓名"

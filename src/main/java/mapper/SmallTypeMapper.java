@@ -17,4 +17,8 @@ public interface SmallTypeMapper {
     List<SmallType> querrySmallType(SmallType smallType);
 
     SmallType findSmallByIdCard(SmallType smallType);
+
+    List<SmallType> getSmallType(SmallType smallType);
+
+    SmallType findById(SmallType recored);
 }

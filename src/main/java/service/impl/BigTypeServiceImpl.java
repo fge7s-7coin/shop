@@ -1,10 +1,13 @@
 package service.impl;
 
 import entity.BigType;
+import entity.SmallType;
 import mapper.BigTypeMapper;
+import mapper.SmallTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.BigTypeService;
+import service.SmallTypeService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,6 +19,8 @@ public class BigTypeServiceImpl implements BigTypeService {
 
     @Autowired
     private BigTypeMapper bigTypeMapper;
+    @Autowired
+    private SmallTypeMapper smallTypeMapper;
 
     public int addBigType(BigType bigType) {
         BigType recore = bigTypeMapper.findBigTypeByIdCard(bigType);
@@ -32,6 +37,7 @@ public class BigTypeServiceImpl implements BigTypeService {
 
     @Override
     public int delBigType(BigType bigType) {
+
         return bigTypeMapper.delBigType(bigType);
     }
 

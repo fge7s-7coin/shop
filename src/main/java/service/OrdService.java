@@ -15,4 +15,10 @@ public interface OrdService {
     List<User> queryOrd(Ord ord);
 
     List<User> queryOrdAll(Ord ord);
+
+    List<Ord> getOrd(Ord ord);
+
+    Ord findById(Ord recore);
+
+    int add(Ord ord);
 }

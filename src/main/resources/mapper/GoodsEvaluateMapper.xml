@@ -19,6 +19,7 @@
         insert into goods_evaluate(id, goods_id, user_id, comment, picture, level)
         values (#{id}, #{goodsId}, #{userId}, #{comment}, #{picture}, #{level})
     </insert>
+
     <!--    更新-->
     <update id="upGoodsEvaluate" parameterType="goodsevaluate">
         update goods_evaluate
@@ -26,13 +27,13 @@
             comment=#{comment},
             picture=#{picture},
             level=#{level}
-        where goods_id = #{goodsId}
+        where id = #{id}
     </update>
     <!--    删除-->
     <delete id="delGoodsEvaluate" parameterType="goodsevaluate">
         delete
         from goods_evaluate
-        where goods_id = #{goodsId}
+        where id = #{id}
     </delete>
     <!--    查询全部-->
     <select id="queryGoodsEvaluate" parameterType="goodsevaluate" resultMap="goodsevaluate">
@@ -44,17 +45,27 @@
         select * from goods_evaluate
     </select>
 
-        <select id="findGoodsEvaluateByIdCard" parameterType="goodsevaluate" resultType="goodsevaluate">
+        <select id="findGoodsEvaluateByIdCard" parameterType="goodsevaluate" resultType="entity.GoodsEvaluate">
             select id,
-            goods_id as userName,
-            user_id as password,
-            comment as realName,
-            picture as idCard,
+            goods_id as goodsId,
+            user_id as userId,
+            comment as comment,
+            picture as picture,
            level as level
             from goods_evaluate
-            where true
-            <if test="null != goodsId">and goods_id = #{goodsId}</if>
+            where
+            id = #{id}
         </select>
+
+<!--    list-->
+    <select id="getGoodsEvaluate" parameterType="goodsevaluate" resultMap="goodsevaluate">
+        select * from goods_evaluate
+    </select>
+
+<!--    form-->
+    <select id="findById" parameterType="goodsevaluate" resultMap="goodsevaluate">
+        select * from goods_evaluate where id = #{id}
+    </select>
 
 
 </mapper>

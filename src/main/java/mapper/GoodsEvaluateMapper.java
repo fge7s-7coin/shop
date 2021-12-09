@@ -18,4 +18,9 @@ public interface GoodsEvaluateMapper {
     List<User> queryGoodsEvaluateAll(GoodsEvaluate goodsEvaluate);
 
     GoodsEvaluate findGoodsEvaluateByIdCard(GoodsEvaluate goodsEvaluate);
+
+    List<GoodsEvaluate> getGoodsEvaluate(GoodsEvaluate goodsEvaluate);
+
+    GoodsEvaluate findById(GoodsEvaluate recore);
+
 }

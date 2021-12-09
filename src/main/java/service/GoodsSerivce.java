@@ -14,4 +14,10 @@ public interface GoodsSerivce {
     List<Goods> querryGoods(Goods goods);
 
     List<Goods> querryGoodsBygoodsname(Goods goods);
+
+    List<Goods> getGoods(Goods goods);
+
+    Goods findById(Goods recored);
+
+    int add(Goods goods);
 }

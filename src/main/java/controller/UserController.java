@@ -74,7 +74,6 @@ public class UserController {
 
 //    验证登陆
     @RequestMapping("/login")
-//    @ResponseBody
     public String login(User user)
     {
         if (userService.login(user)==1)

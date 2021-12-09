@@ -16,6 +16,7 @@
         <result column="create_time" property="createTime"></result>
         <result column="del_flag" property="delFlag"></result>
         <result column="state" property="state"></result>
+        <result column="score" property="score"></result>
     </resultMap>
 
     <!--    插入商品信息-->
@@ -26,24 +27,34 @@
                 #{createTime}, #{delFlag}, #{state})
     </insert>
 
+<!--    add-->
+    <insert id="add" parameterType="Goods">
+        insert into goods(id, goods_name, price, describtion, num, picture, manufacturer, small_type_id, create_time,
+                          del_flag, state,score)
+        values (#{id}, #{goodsName}, #{price}, #{describtion}, #{num}, #{picture}, #{manufacturer}, #{smallTypeId},
+                #{createTime}, #{delFlag}, #{state},#{score})
+    </insert>
+
     <!--    更新商品信息-->
     <update id="upGoods" parameterType="Goods">
         update goods
         set price=#{price},
+            goods_name=#{goodsName},
             describtion=#{describtion},
             num=#{num},
             picture=#{picture},
             manufacturer=#{manufacturer},
             small_type_id=#{smallTypeId},
-            state=#{state}
-        where goods_name = #{goodsName}
+            state=#{state},
+            score=#{score}
+        where id = #{id}
     </update>
 
     <!--    根据商品名字删除商品信息-->
     <delete id="delGoods" parameterType="Goods">
         delete
         from goods
-        where goods_name = #{goodsName}
+        where id = #{id}
     </delete>
 
 
@@ -69,9 +80,23 @@
         select *
         from goods
     </select>
-<!--    通过商品名查询信息-->
+
+    <!--    通过商品名查询信息-->
     <select id="querryGoodsBygoodsname" parameterType="goods" resultMap="goods">
-        select * from goods where goods_name=#{goodsName}
+        select *
+        from goods
+        where goods_name = #{goodsName}
+    </select>
+
+    <!--    list-->
+
+    <select id="getGoods" parameterType="goods" resultMap="goods">
+        select * from goods
+        <if test="id != null and id != ''">where id = #{id}</if>
+    </select>
+<!--    form-->
+    <select id="findById" parameterType="goods" resultMap="goods">
+        select * from goods where id =#{id}
     </select>
 
     <!--    <select id="findUserByIdCard" parameterType="user" resultType="user">-->

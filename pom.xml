@@ -184,6 +184,19 @@
             <scope>runtime</scope>
         </dependency>
 
+<!--log-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
 
     </dependencies>
     <!-- 由于mvn默认是他自己定义的版本，所以通过这个改成我们想要的 -->

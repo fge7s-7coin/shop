@@ -53,5 +53,36 @@ public class GoodsServiceImpl implements GoodsSerivce {
         return goodsMapper.querryGoodsBygoodsname(goods);
     }
 
+    @Override
+    public List<Goods> getGoods(Goods goods) {
+        return goodsMapper.getGoods(goods);
+    }
+
+    @Override
+    public Goods findById(Goods recored) {
+        return goodsMapper.findById(recored);
+    }
+
+    @Override
+    public int add(Goods goods) {
+        if (goods.getId()==null || goods.getId()==""){
+            Goods recore = goodsMapper.findGoodsByIdCard(goods);
+            if (recore == null) {
+
+                String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                goods.setId(uuid);
+                goods.setCreateTime(sdf.format(date));
+                goods.setDelFlag("0");
+                return goodsMapper.addGoods(goods);
+            }
+        }else{
+            return goodsMapper.upGoods(goods);
+        }
+
+        return 0;
+    }
+
 
 }

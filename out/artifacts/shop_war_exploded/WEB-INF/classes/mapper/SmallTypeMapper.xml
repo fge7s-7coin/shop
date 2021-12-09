@@ -29,7 +29,7 @@
     <delete id="delSmallType" parameterType="smalltype">
         delete
         from small_type
-        where type_name = #{typeName}
+        where id = #{id}
     </delete>
 
     <!--    查询信息-->
@@ -49,6 +49,19 @@
         where true
         AND del_flag = '0'
         <if test="null != typeName">and type_name = #{typeName}</if>
+    </select>
+
+    <!--    list-->
+    <select id="getSmallType" parameterType="smalltype" resultMap="smalltype">
+        select *
+        from small_type
+        where del_flag = '0'
+        <if test="id != null and id !=  ''">and id = #{id}</if>
+    </select>
+
+<!--    form-->
+    <select id="findById" parameterType="java.lang.String" resultType="smalltype">
+        select * from small_type where id = #{id}
     </select>
 
     <!--    <select id="findUserByIdCard" parameterType="user" resultType="user">-->

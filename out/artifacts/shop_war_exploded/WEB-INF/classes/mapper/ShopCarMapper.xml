@@ -20,36 +20,56 @@
     </insert>
     <!--    更新商品信息-->
     <update id="upShopCar" parameterType="shopcar">
-        update shop_car set user_id=#{userId},num=#{num} where goods_id=#{goodsId}
+        update shop_car
+        set goods_id=#{goodsId},
+            user_id=#{userId},
+            num=#{num}
+        where  del_flag='0' and id=#{id}
     </update>
 
     <!--    删除商品信息-->
     <delete id="delShopCar" parameterType="shopcar">
         delete
         from shop_car
-        where goods_id = #{goodsId}
+        where id = #{id}
     </delete>
 
-<!--    查询所有信息-->
+    <!--    查询所有信息-->
     <select id="querryShopCar" parameterType="shopcar" resultMap="shopcar">
-        select * from shop_car
+        select *
+        from shop_car
     </select>
-<!--    根据商品id查询信息-->
+    <!--    根据商品id查询信息-->
     <select id="querryShopCarAll" parameterType="shopcar" resultMap="shopcar">
-        select * from shop_car where goods_id=#{goodsId}
+        select *
+        from shop_car
+        where goods_id = #{goodsId}
     </select>
 
 
     <select id="findShopCarIdByGoodsId" parameterType="shopcar" resultType="shopcar">
-                select id,
-                goods_id as goodsId,
-                user_id as userId,
-                num as num,
-                del_flag as delFlag
-                from shop_car
-                where true
-                AND del_flag = '0'
-                <if test="null != goodsId">and goods_id = #{goodsId}</if>
+        select id,
+        goods_id as goodsId,
+        user_id as userId,
+        num as num,
+        del_flag as delFlag
+        from shop_car
+        where true
+        AND del_flag = '0'
+        <if test="null != goodsId">and goods_id = #{goodsId}</if>
+    </select>
+
+    <!--    list-->
+    <select id="getShopCar" parameterType="shopcar" resultMap="shopcar">
+        select * from shop_car where del_flag='0'
+        <if test="goodsId != null and goodsId != ''">and goods_id = #{goodsId}</if>
+    </select>
+
+    <!--    form-->
+    <select id="findById" parameterType="shopcar" resultMap="shopcar">
+        select *
+        from shop_car
+        where del_flag = '0' and id=#{id}
     </select>
 
     <!--    <select id="findUserByIdCard" parameterType="user" resultType="user">-->

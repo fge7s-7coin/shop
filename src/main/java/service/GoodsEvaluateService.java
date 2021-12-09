@@ -16,4 +16,10 @@ public interface GoodsEvaluateService {
     List<User> queryGoodsEvaluate(GoodsEvaluate goodsEvaluate);
 
     List<User> queryGoodsEvaluateAll(GoodsEvaluate goodsEvaluate);
+
+    List<GoodsEvaluate> getGoodsEvaluate(GoodsEvaluate goodsEvaluate);
+
+    GoodsEvaluate findById(GoodsEvaluate recore);
+
+    int add(GoodsEvaluate goodsEvaluate);
 }

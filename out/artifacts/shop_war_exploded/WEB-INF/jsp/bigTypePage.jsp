@@ -27,6 +27,7 @@
                     <thead>
                         <tr>
                             <th>商品类型</th>
+                            <th>操作</th>
 
 		                </tr>
                     </thead>

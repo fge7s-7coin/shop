@@ -100,9 +100,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="">
+                        <a href="/goods/list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品列表</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6e4;</i>
+                    <cite>购物车管理</cite>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/shopcar/list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>购物车</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6e4;</i>
+                    <cite>商品评价</cite>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/goodseva/list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>评价详情</cite>
                         </a>
                     </li>
                 </ul>
@@ -116,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="">
+                        <a href="/ord/list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                         </a>

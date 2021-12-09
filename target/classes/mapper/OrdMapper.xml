@@ -29,18 +29,25 @@
             address_id=#{addressId},
             num=#{num},
             price=#{price},
-            ord_state=#{ordState}
-        where ord_no=#{ordNo}
+            ord_state=#{ordState},
+            ord_no = #{ordNo}
+        where id = #{id}
     </update>
     <delete id="delOrd" parameterType="ord">
-        delete from ord where ord_no=#{ordNo}
+        delete
+        from ord
+        where id = #{id}
     </delete>
 
     <select id="queryOrd" parameterType="ord" resultMap="ord">
-        select * from ord where ord_no=#{ordNo}
+        select *
+        from ord
+        where del_flag='0'
+        <if test="id!=null and id!=''">and id = #{id}</if>
     </select>
     <select id="queryOrdAll" parameterType="ord" resultMap="ord">
-        select * from ord
+        select *
+        from ord
     </select>
 
     <select id="findOrdByIdCard" parameterType="ord" resultType="entity.Goods">
@@ -58,6 +65,20 @@
         where true
         AND del_flag = '0'
         <if test="null != ordNo">and ord_no = #{ordNo}</if>
+    </select>
+
+    <!--    list-->
+    <select id="getord" parameterType="ord" resultMap="ord">
+        select *
+        from ord
+        where del_flag='0'
+        <if test="id!=null and id!=''">and id = #{id}</if>
+    </select>
+
+    <!--    form-->
+    <select id="findById" parameterType="ord" resultMap="ord">
+        select * from ord
+        <if test="ordNo!=null and ordNo != ''">where ord_no=#{ordNo}</if>
     </select>
 
 

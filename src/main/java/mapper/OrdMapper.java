@@ -19,4 +19,8 @@ public interface OrdMapper {
     List<User> queryOrdAll(Ord ord);
 
     Goods findOrdByIdCard(Ord ord);
+
+    List<Ord> getord(Ord ord);
+
+    Ord findById(Ord recore);
 }

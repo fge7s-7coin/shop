@@ -1,7 +1,9 @@
 package service.impl;
 
+import com.sun.tools.corba.se.idl.constExpr.Or;
 import entity.Goods;
 import entity.Ord;
+import entity.ShopCar;
 import entity.User;
 import mapper.GoodsMapper;
 import mapper.OrdMapper;
@@ -61,5 +63,37 @@ public class OrdServiceImpl implements OrdService {
     @Override
     public List<User> queryOrdAll(Ord ord) {
         return ordMapper.queryOrdAll(ord);
+    }
+
+    @Override
+    public List<Ord> getOrd(Ord ord) {
+        return ordMapper.getord(ord);
+    }
+
+    @Override
+    public Ord findById(Ord recore) {
+        return ordMapper.findById(recore);
+    }
+
+    @Override
+    public int add(Ord ord) {
+        if (ord.getId()==null || ord.getId()==""){
+            Ord recore = ordMapper.findById(ord);
+            if (recore == null) {
+                String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                ord.setId(uuid);
+                ord.setCreateTime(sdf.format(date));
+                ord.setDelFlag("0");
+                return ordMapper.addOrd(ord);
+            }
+        }
+        else {
+            return ordMapper.upOrd(ord);
+        }
+
+
+        return 0;
     }
 }

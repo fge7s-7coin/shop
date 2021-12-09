@@ -49,4 +49,36 @@ public class ShopCarServiceImpl implements ShopCarService {
     public List<User> querryShopCarAll(ShopCar shopCar) {
         return shopCarMapper.querryShopCarAll(shopCar);
     }
+
+    @Override
+    public List<ShopCar> getShopCar(ShopCar shopCar) {
+        return shopCarMapper.getShopCar(shopCar);
+    }
+
+
+
+    @Override
+    public int add(ShopCar shopCar) {
+        if (shopCar.getId()==null || shopCar.getId()==""){
+            ShopCar recore = shopCarMapper.findShopCarIdByGoodsId(shopCar);
+            if (recore == null) {
+                String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+                shopCar.setId(uuid);
+                shopCar.setDelFlag("0");
+                return shopCarMapper.addShopCar(shopCar);
+            }
+
+        }
+        else {
+            return shopCarMapper.upShopCar(shopCar);
+        }
+
+
+        return 0;
+    }
+
+    @Override
+    public ShopCar findById(ShopCar recore) {
+        return shopCarMapper.findById(recore);
+    }
 }

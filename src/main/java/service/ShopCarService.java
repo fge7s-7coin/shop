@@ -17,4 +17,11 @@ public interface ShopCarService {
     List<User> querryShopCar(ShopCar shopCar);
 
     List<User> querryShopCarAll(ShopCar shopCar);
+
+    List<ShopCar> getShopCar(ShopCar shopCar);
+
+   
+    int add(ShopCar shopCar);
+
+    ShopCar findById(ShopCar recore);
 }

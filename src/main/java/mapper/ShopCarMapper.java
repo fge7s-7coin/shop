@@ -20,4 +20,9 @@ public interface ShopCarMapper {
     List<User> querryShopCarAll(ShopCar shopCar);
 
     ShopCar findShopCarIdByGoodsId(ShopCar shopCar);
+
+    List<ShopCar> getShopCar(ShopCar shopCar);
+
+
+    ShopCar findById(ShopCar recore);
 }
